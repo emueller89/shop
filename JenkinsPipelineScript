@@ -1,0 +1,52 @@
+stage('Git_download') {
+        //get new files from git Repo
+    build 'Git_download'
+}
+
+stage('Nexusupload') {
+        //provide Updates to Nexus
+        build 'Nexus_upload'
+}
+stage('Deploy to QA') {
+        //download latest Version from Nexus and install on QA
+        build 'Deploy-to-QA'
+}
+
+stage('UFT-Test') {
+        //Run UFT-Test on QA
+        build 'UFT-Test'
+}
+
+stage('Last-Test') {
+        //Run Load-Test on QA
+        build 'DE-Lasttest'
+}
+
+stage('Deploy to Prod-A') {
+        //download latest Version from Nexus and install on Prod-A
+        build 'Deploy-to-Prod-A'
+}
+
+stage('UFT-Test-Prod-A') {
+        //Run UFT-Test on Prod-A
+        build 'UFT-Test-Prod-A'
+}
+
+//stage('Last-Test-Prod-A') {
+        //Run Load-Test on Prod-A
+//        build 'DE-Lasttest-Prod-A'
+//}
+stage('Deploy to Prod-B') {
+        //download latest Version from Nexus and install on Prod-B
+        build 'Deploy-to-Prod-B'
+}
+
+stage('UFT-Test-Prod-B') {
+        //Run UFT-Test on Prod-B
+        build 'UFT-Test-Prod-B'
+}
+
+//stage('Last-Test') {
+        //Run Load-Test on Prod-B
+//        build 'DE-Lasttest-Prod-B'
+//}
